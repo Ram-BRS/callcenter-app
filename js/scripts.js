@@ -24,3 +24,32 @@ window.addEventListener('DOMContentLoaded', event => {
     }
 
 });
+
+document.addEventListener('DOMContentLoaded', function () {
+    var loginForm = document.getElementById('myAnchor');
+
+    loginForm.addEventListener('click', function (event) {
+        var inputEmail = document.getElementById('inputEmail');
+        var passwordInput = document.getElementById('inputPassword');
+
+        // Validate email
+        if (!isValidEmail(inputEmail.value)) {
+            alert('Please enter a valid email address.');
+            event.preventDefault(); // Prevent form submission
+            return;
+        }
+
+        // Validate password
+        if (passwordInput.value.trim() === '') {
+            alert('Please enter a password.');
+            event.preventDefault(); // Prevent form submission
+            return;
+        }
+    });
+
+    function isValidEmail(email) {
+        // Basic email validation
+        var emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+        return emailRegex.test(email);
+    }
+});
